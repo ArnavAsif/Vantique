@@ -1,0 +1,897 @@
+{%- liquid
+  assign top_heading   = section.settings.top_heading
+  assign main_title    = section.settings.main_title
+  assign paragraph     = section.settings.paragraph
+  assign cta_label     = section.settings.cta_label
+  assign cta_link      = section.settings.cta_link
+  assign cta_secondary = section.settings.cta_secondary_label
+  assign cta_sec_link  = section.settings.cta_secondary_link
+  assign tagline       = section.settings.bottom_tagline
+  assign eyebrow       = section.settings.eyebrow_text
+  assign season_badge  = section.settings.season_badge
+  assign corner_text   = section.settings.corner_text
+  assign stat_1_num    = section.settings.stat_1_number
+  assign stat_1_lbl    = section.settings.stat_1_label
+  assign stat_2_num    = section.settings.stat_2_number
+  assign stat_2_lbl    = section.settings.stat_2_label
+  assign stat_3_num    = section.settings.stat_3_number
+  assign stat_3_lbl    = section.settings.stat_3_label
+  assign model_image   = section.settings.model_image
+  assign show_stats    = section.settings.show_stats
+  assign show_sec      = section.settings.show_secondary_cta
+  assign wm_text       = section.settings.watermark_text
+  assign bg_a          = section.settings.bg_color_1
+  assign bg_b          = section.settings.bg_color_2
+  assign title_col     = section.settings.title_color
+  assign head_col      = section.settings.heading_color
+  assign tag_col       = section.settings.tagline_color
+  assign cta_bg        = section.settings.cta_bg_color
+  assign cta_tc        = section.settings.cta_text_color
+-%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=Permanent+Marker&display=swap" rel="stylesheet">
+
+<section
+  class="vh"
+  id="verde-hero-{{ section.id }}"
+  style="
+    --vh-a:       {{ bg_a }};
+    --vh-b:       {{ bg_b }};
+    --vh-title:   {{ title_col }};
+    --vh-head:    {{ head_col }};
+    --vh-tag:     {{ tag_col }};
+    --vh-cta-bg:  {{ cta_bg }};
+    --vh-cta-tc:  {{ cta_tc }};
+  "
+>
+
+  <!-- ── BACKGROUND ── -->
+  <div class="vh__bg" aria-hidden="true">
+    <div class="vh__bg-base"></div>
+    <div class="vh__bg-glow"></div>
+    <div class="vh__bg-vignette"></div>
+    <div class="vh__bg-scanline"></div>
+  </div>
+
+  <!-- ── GEOMETRIC BLOCKS ── -->
+  <div class="vh__geo" aria-hidden="true">
+    <div class="vh__geo-a"></div>
+    <div class="vh__geo-b"></div>
+    <div class="vh__geo-c"></div>
+    <div class="vh__geo-d"></div>
+  </div>
+
+  <!-- ── WATERMARK ── -->
+  <div class="vh__wm" aria-hidden="true">
+    <span class="vh__wm-text">{{ wm_text | default: 'VERDE' }}</span>
+  </div>
+
+  <!-- ── CONTENT ── -->
+  <div class="vh__content">
+
+    <!-- LEFT -->
+    <div class="vh__left">
+
+      <div class="vh__eyebrow" data-anim="fade-up" style="--d:0ms">
+        <span class="vh__eyebrow-line"></span>
+        <span class="vh__eyebrow-text">{{ eyebrow | default: 'SS 2025 — LUXURY STREETWEAR' }}</span>
+        <span class="vh__eyebrow-line"></span>
+      </div>
+
+      <p class="vh__subhead" data-anim="fade-up" style="--d:120ms">
+        {{ top_heading | default: 'TODO DESIGNER DEVERIA USAR ESSAS PALETAS DE' }}
+      </p>
+
+      <h1 class="vh__title" data-anim="fade-up" style="--d:240ms">
+        {{ main_title | default: 'Verde' }}
+      </h1>
+
+      <div class="vh__rule" data-anim="expand" style="--d:360ms" aria-hidden="true">
+        <span class="vh__rule-dot"></span>
+        <span class="vh__rule-line"></span>
+        <span class="vh__rule-diamond"></span>
+        <span class="vh__rule-line"></span>
+        <span class="vh__rule-dot"></span>
+      </div>
+
+      <p class="vh__para" data-anim="fade-up" style="--d:480ms">
+        {{ paragraph | default: 'A DYNAMIC FASHION CAMPAIGN ROOTED IN BOLD COLOR THEORY. LUXURY STREETWEAR MEETS FUTURISTIC EDITORIAL DESIGN. CURATED FOR THE NEXT GENERATION OF CREATIVE VISIONARIES.' }}
+      </p>
+
+      <div class="vh__cta-row" data-anim="fade-up" style="--d:600ms">
+        {%- if cta_label != blank -%}
+          <a href="{{ cta_link | default: '#' }}" class="vh__cta">
+            <span class="vh__cta-bg-fill"></span>
+            <span class="vh__cta-label">{{ cta_label }}</span>
+            <span class="vh__cta-arrow">&#8594;</span>
+          </a>
+        {%- endif -%}
+        {%- if show_sec and cta_secondary != blank -%}
+          <a href="{{ cta_sec_link | default: '#' }}" class="vh__cta-sec">
+            <span>{{ cta_secondary }}</span>
+          </a>
+        {%- endif -%}
+      </div>
+
+      {%- if show_stats -%}
+        <div class="vh__stats" data-anim="fade-up" style="--d:720ms">
+          {%- if stat_1_num != blank -%}
+            <div class="vh__stat">
+              <span class="vh__stat-num">{{ stat_1_num }}</span>
+              <span class="vh__stat-lbl">{{ stat_1_lbl }}</span>
+            </div>
+            <span class="vh__stat-sep"></span>
+          {%- endif -%}
+          {%- if stat_2_num != blank -%}
+            <div class="vh__stat">
+              <span class="vh__stat-num">{{ stat_2_num }}</span>
+              <span class="vh__stat-lbl">{{ stat_2_lbl }}</span>
+            </div>
+            <span class="vh__stat-sep"></span>
+          {%- endif -%}
+          {%- if stat_3_num != blank -%}
+            <div class="vh__stat">
+              <span class="vh__stat-num">{{ stat_3_num }}</span>
+              <span class="vh__stat-lbl">{{ stat_3_lbl }}</span>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+    </div>
+
+    <!-- RIGHT — MODEL -->
+    <div class="vh__right">
+      <div class="vh__model">
+        <div class="vh__model-glow-back" aria-hidden="true"></div>
+
+        {%- if model_image != blank -%}
+          <div class="vh__model-wrap" data-anim="model-in">
+            {{
+              model_image
+              | image_url: width: 1400
+              | image_tag:
+                class: 'vh__model-img',
+                alt: model_image.alt | default: 'Campaign Model',
+                loading: 'eager',
+                fetchpriority: 'high',
+                widths: '500, 700, 900, 1100, 1400',
+                sizes: '(max-width: 480px) 90vw, (max-width: 768px) 100vw, (max-width: 1024px) 55vw, 58vw'
+            }}
+          </div>
+        {%- else -%}
+          <div class="vh__model-empty">
+            <span class="vh__model-empty-icon">＋</span>
+            <span class="vh__model-empty-title">ADD MODEL IMAGE</span>
+            <span class="vh__model-empty-sub">Upload via Theme Editor → Section Settings</span>
+          </div>
+        {%- endif -%}
+
+        <div class="vh__model-shadow" aria-hidden="true"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM LEFT -->
+  <div class="vh__badge" data-anim="fade-up" style="--d:840ms">
+    <span class="vh__badge-dot"></span>
+    <span class="vh__badge-text">{{ season_badge | default: 'VERDE COLLECTION — AVAILABLE NOW' }}</span>
+  </div>
+
+  <!-- BOTTOM RIGHT -->
+  <div class="vh__tagline" data-anim="fade-up" style="--d:960ms">
+    <span class="vh__tagline-text">{{ tagline | default: 'JUST DO IT.' }}</span>
+  </div>
+
+  <!-- TOP RIGHT -->
+  <div class="vh__corner">
+    <span class="vh__corner-text">{{ corner_text }}</span>
+  </div>
+
+</section>
+
+<style>
+/* ==========================================================
+   VERDE HERO v4 — PERFORMANCE OPTIMIZED
+   ========================================================== */
+
+.vh *, .vh *::before, .vh *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.vh {
+  --vh-a:      #d9ff00;
+  --vh-b:      #aeea00;
+  --vh-title:  #ffffff;
+  --vh-head:   #080808;
+  --vh-tag:    #080808;
+  --vh-cta-bg: #080808;
+  --vh-cta-tc: #d9ff00;
+
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2.2 / 1;
+  min-height: 500px;
+  max-height: 820px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  isolation: isolate;
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  /* FIX: force GPU compositing layer for the whole section */
+  transform: translateZ(0);
+}
+
+/* ==========================================================
+   BACKGROUND
+   FIX: একটিমাত্র div-এ সব gradient merge করা হয়েছে।
+   আগে ৪টি আলাদা blur() div ছিল — এখন শুধু একটি static gradient।
+   blur() সম্পূর্ণ সরানো হয়েছে background থেকে।
+   ========================================================== */
+.vh__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  /* FIX: GPU layer */
+  transform: translateZ(0);
+}
+
+.vh__bg-base {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    125deg,
+    #76b500 0%,
+    #96d400 14%,
+    var(--vh-b) 32%,
+    #beff00 52%,
+    #caff00 70%,
+    var(--vh-a) 88%,
+    #c2ef00 100%
+  );
+}
+
+/* FIX: আগের ৪টি blur glow div (blur 70px/80px/60px/50px) বাদ দিয়ে
+   একটি হালকা CSS gradient দিয়ে ওই visual effect রাখা হয়েছে।
+   blur() ছাড়াই প্রায় একই দেখায়, কিন্তু ০ GPU cost। */
+.vh__bg-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 70% at 12% 58%, rgba(140,255,0,0.45) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 60% at 50% 38%, rgba(255,255,230,0.50) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 55% at 88% 28%, rgba(255,255,180,0.40) 0%, transparent 65%),
+    radial-gradient(ellipse 65% 85% at 55% 50%, rgba(255,255,255,0.35) 0%, transparent 70%);
+}
+
+.vh__bg-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, transparent 38%, rgba(0,0,0,0.22) 100%),
+    linear-gradient(to right,  rgba(0,0,0,0.16) 0%, transparent 24%, transparent 76%, rgba(0,0,0,0.12) 100%),
+    linear-gradient(to bottom, rgba(0,0,0,0.10) 0%, transparent 20%, transparent 76%, rgba(0,0,0,0.20) 100%);
+}
+
+.vh__bg-scanline {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0,0,0,0.015) 3px,
+    rgba(0,0,0,0.015) 4px
+  );
+  pointer-events: none;
+}
+
+/* ==========================================================
+   GEOMETRIC OVERLAYS
+   ========================================================== */
+.vh__geo {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.vh__geo-a, .vh__geo-b, .vh__geo-c, .vh__geo-d { position: absolute; border-radius: 3px; }
+.vh__geo-a { width: 30%; height: 95%; top: -3%; left: -5%; transform: rotate(-4.5deg); background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.055); }
+.vh__geo-b { width: 20%; height: 56%; top: 22%; left: 23%; transform: rotate(2.5deg); background: rgba(255,255,255,0.018); border: 1px solid rgba(255,255,255,0.038); }
+.vh__geo-c { width: 22%; height: 84%; top: 6%; right: 3%; transform: rotate(3.2deg); background: rgba(0,0,0,0.030); border: 1px solid rgba(0,0,0,0.042); }
+.vh__geo-d { width: 10%; height: 34%; bottom: 4%; right: 15%; transform: rotate(-2.8deg); background: rgba(255,255,255,0.030); border: 1px solid rgba(255,255,255,0.055); }
+
+/* ==========================================================
+   WATERMARK
+   ========================================================== */
+.vh__wm {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.vh__wm-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(9rem, 28vw, 45rem);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: rgba(0,0,0,0.05);
+  line-height: 0.85;
+  white-space: nowrap;
+  user-select: none;
+  transform: translateY(5%);
+}
+
+/* ==========================================================
+   CONTENT GRID
+   ========================================================== */
+.vh__content {
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: clamp(22px, 5%, 82px) clamp(28px, 5.5%, 100px);
+}
+
+/* ==========================================================
+   LEFT
+   ========================================================== */
+.vh__left {
+  flex: 0 0 42%;
+  max-width: 42%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(5px, 0.95vw, 15px);
+  padding-right: clamp(14px, 2%, 40px);
+  z-index: 4;
+}
+
+.vh__eyebrow { display: flex; align-items: center; gap: 10px; }
+.vh__eyebrow-line { display: block; height: 1.5px; width: clamp(16px, 2.6vw, 36px); background: var(--vh-head); opacity: 0.45; flex-shrink: 0; }
+.vh__eyebrow-text { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(0.40rem, 0.66vw, 0.68rem); font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: var(--vh-head); opacity: 0.60; white-space: nowrap; }
+
+.vh__subhead { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(0.58rem, 1.04vw, 1.08rem); font-weight: 700; color: var(--vh-head); letter-spacing: 0.16em; text-transform: uppercase; line-height: 1.52; word-spacing: 0.28em; text-align: justify; text-align-last: justify; }
+
+.vh__title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: clamp(4rem, 8.8vw, 14.5rem);
+  font-weight: 900;
+  color: var(--vh-title);
+  line-height: 0.84;
+  letter-spacing: -0.02em;
+  /* FIX: text-shadow সরলীকরণ — আগে ৪টি layer ছিল */
+  text-shadow:
+    4px 4px 0 rgba(0,0,0,0.16),
+    0   0  40px rgba(255,255,255,0.18);
+  margin: clamp(2px, 0.3vw, 5px) 0;
+}
+
+.vh__rule { display: flex; align-items: center; gap: 7px; }
+.vh__rule-dot { display: block; width: 4px; height: 4px; border-radius: 50%; background: var(--vh-head); opacity: 0.45; flex-shrink: 0; }
+.vh__rule-diamond { display: block; width: 6px; height: 6px; background: var(--vh-head); opacity: 0.35; transform: rotate(45deg); flex-shrink: 0; }
+.vh__rule-line { flex: 1; height: 1px; background: linear-gradient(to right, rgba(8,8,8,0.40), rgba(8,8,8,0.06)); }
+
+.vh__para { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(0.44rem, 0.76vw, 0.80rem); font-weight: 400; color: var(--vh-head); letter-spacing: 0.09em; text-transform: uppercase; line-height: 2.05; text-align: justify; text-align-last: justify; opacity: 0.78; }
+
+.vh__cta-row { display: flex; align-items: center; gap: clamp(10px, 1.6vw, 24px); flex-wrap: wrap; margin-top: clamp(2px, 0.4vw, 8px); }
+
+.vh__cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  background: var(--vh-cta-bg);
+  color: var(--vh-cta-tc);
+  text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(0.55rem, 0.90vw, 0.94rem);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  padding: clamp(9px, 1.1vw, 15px) clamp(18px, 2.2vw, 32px);
+  border-radius: 2px;
+  overflow: hidden;
+  /* FIX: box-shadow সরলীকরণ — inset shadow ও glow কমানো হয়েছে */
+  box-shadow: 0 4px 18px rgba(0,0,0,0.28);
+  transition: transform 0.40s cubic-bezier(0.16,1,0.3,1), box-shadow 0.40s cubic-bezier(0.16,1,0.3,1);
+  white-space: nowrap;
+  /* FIX: GPU layer */
+  will-change: transform;
+}
+
+.vh__cta-bg-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, rgba(217,255,0,0.00) 0%, rgba(217,255,0,0.10) 45%, rgba(217,255,0,0.00) 100%);
+  transform: translateX(-110%);
+  transition: transform 0.60s cubic-bezier(0.16,1,0.3,1);
+  /* FIX: GPU layer */
+  will-change: transform;
+}
+
+.vh__cta:hover .vh__cta-bg-fill { transform: translateX(110%); }
+.vh__cta:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.36); }
+.vh__cta-label { position: relative; z-index: 1; }
+.vh__cta-arrow { position: relative; z-index: 1; font-size: 1.1em; line-height: 1; transition: transform 0.30s cubic-bezier(0.16,1,0.3,1); will-change: transform; }
+.vh__cta:hover .vh__cta-arrow { transform: translateX(6px); }
+
+.vh__cta-sec {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(0.48rem, 0.78vw, 0.78rem);
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--vh-head);
+  text-decoration: none;
+  opacity: 0.58;
+  border-bottom: 1px solid rgba(8,8,8,0.28);
+  padding-bottom: 1px;
+  transition: opacity 0.30s ease;
+  white-space: nowrap;
+}
+
+.vh__cta-sec:hover { opacity: 1; }
+
+.vh__stats { display: flex; align-items: center; gap: clamp(8px, 1.4vw, 20px); padding-top: clamp(5px, 0.8vw, 12px); border-top: 1px solid rgba(8,8,8,0.13); }
+.vh__stat { display: flex; flex-direction: column; gap: 2px; }
+.vh__stat-num { font-family: 'Bebas Neue', sans-serif; font-size: clamp(0.95rem, 1.70vw, 2.15rem); color: var(--vh-head); line-height: 1; letter-spacing: 0.04em; }
+.vh__stat-lbl { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(0.36rem, 0.58vw, 0.58rem); font-weight: 700; letter-spacing: 0.20em; text-transform: uppercase; color: var(--vh-head); opacity: 0.48; }
+.vh__stat-sep { display: block; width: 1px; height: clamp(22px, 3.4vw, 44px); background: rgba(8,8,8,0.16); flex-shrink: 0; }
+
+/* ==========================================================
+   RIGHT — MODEL
+   FIX: ২টি blur glow div বাদ দিয়ে ১টি static gradient রাখা হয়েছে।
+   drop-shadow filter সরলীকরণ।
+   mix-blend-mode: screen সম্পূর্ণ সরানো হয়েছে।
+   ========================================================== */
+.vh__right {
+  flex: 0 0 58%;
+  max-width: 58%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+}
+
+.vh__model { position: relative; width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: center; }
+
+/* FIX: আগে blur(60px) ছিল এবং animation ছিল — দুটোই সরানো হয়েছে।
+   Static radial-gradient দিয়ে same visual effect। */
+.vh__model-glow-back {
+  position: absolute;
+  bottom: -15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(ellipse at 50% 60%, rgba(255,255,255,0.55) 0%, rgba(222,255,50,0.35) 35%, transparent 65%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.vh__model-wrap {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  /* FIX: GPU layer for image */
+  transform: translateZ(0);
+}
+
+.vh__model-img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  /* FIX: আগে ২টি drop-shadow ছিল — ১টিতে কমানো হয়েছে */
+  filter: drop-shadow(0 30px 40px rgba(0,0,0,0.32));
+}
+
+.vh__model-shadow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 55%;
+  height: clamp(8px, 1.3vw, 24px);
+  background: radial-gradient(ellipse, rgba(0,0,0,0.35) 0%, transparent 70%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.vh__model-empty { position: relative; z-index: 3; width: 62%; height: 86%; border: 2px dashed rgba(8,8,8,0.20); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; background: rgba(8,8,8,0.04); }
+.vh__model-empty-icon { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 5vw, 5rem); color: rgba(8,8,8,0.30); line-height: 1; }
+.vh__model-empty-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(0.6rem, 1.2vw, 1.08rem); font-weight: 700; letter-spacing: 0.22em; color: rgba(8,8,8,0.40); text-transform: uppercase; }
+.vh__model-empty-sub { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(0.42rem, 0.72vw, 0.70rem); letter-spacing: 0.14em; color: rgba(8,8,8,0.26); text-transform: uppercase; }
+
+/* ==========================================================
+   BOTTOM LEFT BADGE
+   ========================================================== */
+.vh__badge { position: absolute; bottom: clamp(14px, 2.8%, 44px); left: clamp(22px, 4.8%, 70px); z-index: 6; pointer-events: none; display: flex; align-items: center; gap: 8px; }
+.vh__badge-dot { display: block; width: 5px; height: 5px; border-radius: 50%; background: var(--vh-head); opacity: 0.70; flex-shrink: 0; }
+.vh__badge-text { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(0.36rem, 0.64vw, 0.66rem); font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: var(--vh-head); opacity: 0.55; }
+
+/* ==========================================================
+   BOTTOM RIGHT TAGLINE
+   ========================================================== */
+.vh__tagline { position: absolute; bottom: clamp(14px, 3%, 48px); right: clamp(22px, 4.8%, 70px); z-index: 6; pointer-events: none; text-align: right; }
+.vh__tagline-text { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.5rem, 4vw, 5.2rem); font-weight: 900; color: var(--vh-tag); line-height: 0.87; letter-spacing: 0.04em; display: block; text-shadow: 0 2px 6px rgba(0,0,0,0.08); white-space: pre-line; }
+
+/* ==========================================================
+   TOP RIGHT CORNER
+   ========================================================== */
+.vh__corner { position: absolute; top: clamp(14px, 2.5%, 36px); right: clamp(22px, 4.8%, 70px); z-index: 6; pointer-events: none; }
+.vh__corner-text { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(0.36rem, 0.60vw, 0.60rem); font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--vh-head); opacity: 0.38; }
+
+/* ==========================================================
+   ENTRY ANIMATIONS
+   FIX: will-change যোগ করা হয়েছে প্রতিটি animated element-এ
+   ========================================================== */
+[data-anim] { opacity: 0; }
+
+.vh--ready [data-anim="fade-up"] {
+  animation: vh-fade-up 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--d, 0ms);
+  will-change: transform, opacity;
+}
+
+.vh--ready [data-anim="expand"] {
+  animation: vh-expand 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--d, 0ms);
+  will-change: transform, opacity;
+}
+
+.vh--ready [data-anim="model-in"] {
+  animation: vh-model-in 1.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 200ms;
+  will-change: transform, opacity;
+}
+
+@keyframes vh-fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes vh-expand {
+  from { opacity: 0; transform: scaleX(0); }
+  to   { opacity: 1; transform: scaleX(1); }
+}
+
+@keyframes vh-model-in {
+  from { opacity: 0; transform: translateY(36px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+/* ==========================================================
+   RESPONSIVE — TABLET ≤ 1024px
+   ========================================================== */
+@media screen and (max-width: 1024px) {
+  .vh { aspect-ratio: unset; height: 100svh; min-height: 600px; max-height: 900px; }
+  .vh__left  { flex: 0 0 46%; max-width: 46%; }
+  .vh__right { flex: 0 0 54%; max-width: 54%; }
+  .vh__stats { display: none; }
+  .vh__wm-text { font-size: clamp(6rem, 24vw, 14rem); }
+}
+
+/* ==========================================================
+   RESPONSIVE — MOBILE ≤ 768px
+   ========================================================== */
+@media screen and (max-width: 768px) {
+  .vh { aspect-ratio: unset; height: 100svh; min-height: 680px; max-height: 960px; }
+
+  .vh__content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: calc(var(--vh-header-h, 70px) + clamp(18px, 4vw, 32px));
+    padding-left:  clamp(20px, 5.5vw, 40px);
+    padding-right: clamp(20px, 5.5vw, 40px);
+    padding-bottom: 0;
+    height: 100%;
+  }
+
+  .vh__left {
+    flex: 0 0 52%;
+    max-width: 100%;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    padding-right: 0;
+    z-index: 6;
+    gap: clamp(10px, 2.8vw, 18px);
+    overflow: hidden;
+  }
+
+  .vh__eyebrow { justify-content: center; }
+  .vh__eyebrow-text { font-size: clamp(0.68rem, 3.2vw, 0.88rem); letter-spacing: 0.20em; opacity: 0.75; }
+  .vh__subhead { text-align: center; text-align-last: center; font-size: clamp(0.88rem, 3.8vw, 1.20rem); letter-spacing: 0.12em; word-spacing: 0.16em; }
+  .vh__title { font-size: clamp(4.4rem, 19vw, 9rem); text-align: center; }
+  .vh__rule { display: none; }
+  .vh__para { text-align: center; text-align-last: center; max-width: 380px; font-size: clamp(0.78rem, 3.2vw, 1.00rem); line-height: 1.80; letter-spacing: 0.08em; opacity: 0.85; }
+  .vh__cta-row { justify-content: center; }
+  .vh__cta { font-size: clamp(0.84rem, 3.4vw, 1.05rem); padding: clamp(13px, 3.2vw, 18px) clamp(24px, 6vw, 36px); }
+  .vh__cta-sec { font-size: clamp(0.76rem, 3vw, 0.92rem); opacity: 0.70; }
+  .vh__stats { display: none; }
+
+  .vh__right {
+    position: relative;
+    bottom: auto; left: auto; right: auto;
+    flex: 0 0 48%;
+    max-width: 100%;
+    width: 100%;
+    height: 48%;
+    z-index: 3;
+  }
+
+  .vh__wm-text { font-size: clamp(5.5rem, 38vw, 12rem); }
+  .vh__geo-a, .vh__geo-b { display: none; }
+  .vh__badge-text { font-size: clamp(0.62rem, 2.6vw, 0.76rem); letter-spacing: 0.18em; }
+  .vh__tagline-text { font-size: clamp(1.6rem, 6vw, 3rem); }
+}
+
+/* ==========================================================
+   RESPONSIVE — SMALL MOBILE ≤ 480px
+   ========================================================== */
+@media screen and (max-width: 480px) {
+  .vh__content { padding-top: calc(var(--vh-header-h, 64px) + 14px); padding-left: 18px; padding-right: 18px; padding-bottom: 0; }
+  .vh__eyebrow-text { font-size: 0.70rem; }
+  .vh__subhead  { font-size: 0.90rem; letter-spacing: 0.10em; }
+  .vh__title    { font-size: clamp(3.8rem, 21vw, 7rem); }
+  .vh__para     { font-size: 0.80rem; line-height: 1.70; }
+  .vh__cta { font-size: 0.88rem; padding: 13px 26px; }
+  .vh__tagline-text { font-size: clamp(1.3rem, 6.5vw, 2.2rem); }
+  .vh__cta-sec { display: none; }
+}
+
+/* ==========================================================
+   REDUCED MOTION
+   ========================================================== */
+@media (prefers-reduced-motion: reduce) {
+  [data-anim], .vh__cta, .vh__cta-bg-fill, .vh__cta-arrow, .vh__cta-sec {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+</style>
+
+<script>
+(function () {
+  var section = document.getElementById('verde-hero-{{ section.id }}');
+  if (!section) return;
+  requestAnimationFrame(function () {
+    section.classList.add('vh--ready');
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "VERDE Hero Banner",
+  "tag": "section",
+  "class": "verde-hero-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "📸 Model / Campaign Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "model_image",
+      "label": "Model Image",
+      "info": "Best results: PNG with transparent background, min 1000×1400px portrait."
+    },
+    {
+      "type": "header",
+      "content": "✏️ Left Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow_text",
+      "label": "Eyebrow Label",
+      "default": "SS 2025 — LUXURY STREETWEAR"
+    },
+    {
+      "type": "text",
+      "id": "top_heading",
+      "label": "Top Heading",
+      "default": "TODO DESIGNER DEVERIA USAR ESSAS PALETAS DE"
+    },
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Main Title (Brush Script)",
+      "default": "Verde"
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph",
+      "label": "Campaign Description",
+      "default": "A DYNAMIC FASHION CAMPAIGN ROOTED IN BOLD COLOR THEORY. LUXURY STREETWEAR MEETS FUTURISTIC EDITORIAL DESIGN. CURATED FOR THE NEXT GENERATION OF CREATIVE VISIONARIES."
+    },
+    {
+      "type": "text",
+      "id": "watermark_text",
+      "label": "Background Watermark Text",
+      "default": "VERDE"
+    },
+    {
+      "type": "header",
+      "content": "🔘 Primary CTA Button"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button Label",
+      "default": "EXPLORE COLLECTION"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "🔗 Secondary CTA"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_cta",
+      "label": "Show Secondary CTA",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_secondary_label",
+      "label": "Secondary Button Label",
+      "default": "VIEW LOOKBOOK"
+    },
+    {
+      "type": "url",
+      "id": "cta_secondary_link",
+      "label": "Secondary Button Link"
+    },
+    {
+      "type": "header",
+      "content": "📊 Stats Row"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stats",
+      "label": "Show Stats Row",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "stat_1_number",
+      "label": "Stat 1 — Number",
+      "default": "200+"
+    },
+    {
+      "type": "text",
+      "id": "stat_1_label",
+      "label": "Stat 1 — Label",
+      "default": "PIECES"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_number",
+      "label": "Stat 2 — Number",
+      "default": "42"
+    },
+    {
+      "type": "text",
+      "id": "stat_2_label",
+      "label": "Stat 2 — Label",
+      "default": "COLORWAYS"
+    },
+    {
+      "type": "text",
+      "id": "stat_3_number",
+      "label": "Stat 3 — Number",
+      "default": "∞"
+    },
+    {
+      "type": "text",
+      "id": "stat_3_label",
+      "label": "Stat 3 — Label",
+      "default": "ATTITUDE"
+    },
+    {
+      "type": "header",
+      "content": "🏷️ Labels & Badges"
+    },
+    {
+      "type": "text",
+      "id": "season_badge",
+      "label": "Bottom Left Badge",
+      "default": "VERDE COLLECTION — AVAILABLE NOW"
+    },
+    {
+      "type": "text",
+      "id": "bottom_tagline",
+      "label": "Bottom Right Tagline",
+      "default": "JUST\nDO IT."
+    },
+    {
+      "type": "text",
+      "id": "corner_text",
+      "label": "Top Right Corner Text"
+    },
+    {
+      "type": "header",
+      "content": "🎨 Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_1",
+      "label": "Background — Light Tone",
+      "default": "#d9ff00"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_2",
+      "label": "Background — Dark Tone",
+      "default": "#aeea00"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Main Title Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Headings & Text Color",
+      "default": "#080808"
+    },
+    {
+      "type": "color",
+      "id": "tagline_color",
+      "label": "Bottom Tagline Color",
+      "default": "#080808"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "CTA Button Background",
+      "default": "#080808"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "CTA Button Text Color",
+      "default": "#d9ff00"
+    }
+  ],
+  "presets": [
+    {
+      "name": "VERDE Hero Banner",
+      "category": "Hero Sections"
+    }
+  ]
+}
+{% endschema %}

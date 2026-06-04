@@ -1,0 +1,1870 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+/* ═══════════════════════════════════════════════════
+   CSS CUSTOM PROPERTIES
+═══════════════════════════════════════════════════ */
+.vnf-wrap {
+  --vnf-lime:       #c6ff00;
+  --vnf-lime-80:    rgba(198,255,0,0.80);
+  --vnf-lime-40:    rgba(198,255,0,0.40);
+  --vnf-lime-20:    rgba(198,255,0,0.20);
+  --vnf-lime-10:    rgba(198,255,0,0.10);
+  --vnf-lime-06:    rgba(198,255,0,0.06);
+  --vnf-lime-03:    rgba(198,255,0,0.03);
+  --vnf-black:      #050505;
+  --vnf-dark:       #080808;
+  --vnf-dark2:      #0d0d0d;
+  --vnf-white:      #ffffff;
+  --vnf-white-70:   rgba(255,255,255,0.70);
+  --vnf-white-45:   rgba(255,255,255,0.45);
+  --vnf-white-25:   rgba(255,255,255,0.25);
+  --vnf-white-10:   rgba(255,255,255,0.10);
+  --vnf-white-06:   rgba(255,255,255,0.06);
+  --vnf-white-04:   rgba(255,255,255,0.04);
+  --vnf-glass:      rgba(8,8,8,0.70);
+  --vnf-border:     rgba(198,255,0,0.18);
+  --vnf-border-dim: rgba(255,255,255,0.07);
+  --vnf-font-d:     'Bebas Neue','Impact','Arial Narrow',sans-serif;
+  --vnf-font-b:     'Inter','Helvetica Neue',sans-serif;
+  --vnf-font-m:     'Space Mono','Courier New',monospace;
+  --vnf-ease:       cubic-bezier(0.16,1,0.3,1);
+  --vnf-ease-out:   cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+/* ═══════════════════════════════════════════════════
+   GLOBAL WRAP
+═══════════════════════════════════════════════════ */
+.vnf-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--vnf-black);
+  isolation: isolate;
+}
+
+/* ═══════════════════════════════════════════════════
+   SHARED ANIMATED BACKGROUND
+═══════════════════════════════════════════════════ */
+.vnf-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.vnf-bg-base {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 55% at 15% 25%, rgba(198,255,0,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 70% at 88% 75%, rgba(198,255,0,0.05) 0%, transparent 58%),
+    radial-gradient(ellipse 50% 40% at 55% 5%,  rgba(198,255,0,0.04) 0%, transparent 52%),
+    linear-gradient(175deg, #090909 0%, #050505 40%, #070707 75%, #050505 100%);
+  animation: vnf-bg 16s ease-in-out infinite;
+}
+@keyframes vnf-bg {
+  0%,100% { opacity:1; }
+  50% { opacity:0.72; }
+}
+
+.vnf-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+.vnf-orb-1 {
+  width: clamp(280px,42vw,620px);
+  height: clamp(280px,42vw,620px);
+  background: radial-gradient(circle,rgba(198,255,0,0.18) 0%,rgba(198,255,0,0.05) 45%,transparent 70%);
+  top: -18%; left: -8%;
+  animation: vnf-o1 22s ease-in-out infinite;
+}
+.vnf-orb-2 {
+  width: clamp(220px,35vw,520px);
+  height: clamp(220px,35vw,520px);
+  background: radial-gradient(circle,rgba(198,255,0,0.14) 0%,rgba(198,255,0,0.04) 45%,transparent 70%);
+  bottom: 5%; right: -6%;
+  animation: vnf-o2 26s ease-in-out infinite;
+}
+.vnf-orb-3 {
+  width: clamp(180px,28vw,420px);
+  height: clamp(180px,28vw,420px);
+  background: radial-gradient(circle,rgba(198,255,0,0.10) 0%,transparent 70%);
+  top: 35%; left: 42%;
+  animation: vnf-o3 18s ease-in-out infinite;
+}
+.vnf-orb-4 {
+  width: clamp(140px,20vw,320px);
+  height: clamp(140px,20vw,320px);
+  background: radial-gradient(circle,rgba(198,255,0,0.08) 0%,transparent 70%);
+  top: 60%; left: 18%;
+  animation: vnf-o4 24s ease-in-out infinite reverse;
+}
+@keyframes vnf-o1 {
+  0%,100%{transform:translate(0,0) scale(1);opacity:0.75;}
+  33%{transform:translate(3%,6%) scale(1.06);opacity:1;}
+  66%{transform:translate(5%,2%) scale(0.93);opacity:0.6;}
+}
+@keyframes vnf-o2 {
+  0%,100%{transform:translate(0,0) scale(1);}
+  40%{transform:translate(-4%,-5%) scale(1.08);}
+  70%{transform:translate(-2%,-2%) scale(0.92);}
+}
+@keyframes vnf-o3 {
+  0%,100%{transform:translate(-50%,0);opacity:0.55;}
+  50%{transform:translate(-50%,10%);opacity:0.85;}
+}
+@keyframes vnf-o4 {
+  0%,100%{transform:translate(0,0);}
+  50%{transform:translate(6%,-5%);}
+}
+
+.vnf-mesh {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(198,255,0,0.030) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(198,255,0,0.030) 1px,transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 50%,black 0%,transparent 80%);
+  animation: vnf-mesh 12s ease-in-out infinite;
+}
+@keyframes vnf-mesh { 0%,100%{opacity:0.40;} 50%{opacity:0.80;} }
+
+.vnf-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.018;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px;
+}
+
+.vnf-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.060) 2px,rgba(0,0,0,0.060) 4px);
+  opacity: 0.28;
+}
+
+.vnf-fog {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 100% 40% at 20% 100%,rgba(198,255,0,0.052) 0%,transparent 60%),
+    radial-gradient(ellipse 80% 35% at 80% 0%,rgba(198,255,0,0.038) 0%,transparent 55%);
+  animation: vnf-fog 20s ease-in-out infinite;
+}
+@keyframes vnf-fog { 0%,100%{transform:translateX(0);opacity:0.65;} 50%{transform:translateX(2%);opacity:1;} }
+
+/* Particles */
+.vnf-particles { position:absolute; inset:0; pointer-events:none; }
+.vnf-p {
+  position:absolute;
+  width:2px; height:2px;
+  background:var(--vnf-lime);
+  border-radius:50%;
+  box-shadow:0 0 5px 1.5px rgba(198,255,0,0.52);
+}
+.vnf-p1  {top:10%;left:7%;  animation:vnf-pf 16s ease-in-out infinite 0s;}
+.vnf-p2  {top:28%;left:20%; animation:vnf-pf 20s ease-in-out infinite -3s;}
+.vnf-p3  {top:55%;left:5%;  animation:vnf-pf 14s ease-in-out infinite -5s;}
+.vnf-p4  {top:78%;left:25%; animation:vnf-pf 22s ease-in-out infinite -1s;}
+.vnf-p5  {top:90%;left:42%; animation:vnf-pf 18s ease-in-out infinite -7s;}
+.vnf-p6  {top:15%;left:52%; animation:vnf-pf 24s ease-in-out infinite -4s;}
+.vnf-p7  {top:42%;left:60%; animation:vnf-pf 17s ease-in-out infinite -9s;}
+.vnf-p8  {top:70%;left:68%; animation:vnf-pf 21s ease-in-out infinite -6s;}
+.vnf-p9  {top:20%;left:78%; animation:vnf-pf 15s ease-in-out infinite -8s;}
+.vnf-p10 {top:60%;left:85%; animation:vnf-pf 19s ease-in-out infinite -2s;}
+.vnf-p11 {top:85%;left:92%; animation:vnf-pf 23s ease-in-out infinite -11s;}
+.vnf-p12 {top:5%; left:96%; animation:vnf-pf 16s ease-in-out infinite -4.5s;}
+@keyframes vnf-pf {
+  0%  {transform:translateY(0) translateX(0);opacity:0;}
+  12% {opacity:0.7;}
+  55% {transform:translateY(-40px) translateX(11px);opacity:0.48;}
+  88% {opacity:0.22;}
+  100%{transform:translateY(-78px) translateX(-8px);opacity:0;}
+}
+
+/* ═══════════════════════════════════════════════════
+   WATERMARK
+═══════════════════════════════════════════════════ */
+.vnf-watermark {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  overflow: hidden;
+}
+.vnf-watermark span {
+  font-family: var(--vnf-font-d);
+  font-size: clamp(80px,14vw,220px);
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(198,255,0,0.048);
+  white-space: nowrap;
+  filter: blur(1.5px);
+  opacity: 0.42;
+  transform: rotate(-2deg) translateX(-3%);
+  animation: vnf-wmk 35s ease-in-out infinite;
+  user-select: none;
+  letter-spacing: -0.01em;
+}
+@keyframes vnf-wmk {
+  0%,100%{transform:rotate(-2deg) translateX(-3%);opacity:0.38;}
+  50%{transform:rotate(-1deg) translateX(-1.5%);opacity:0.55;}
+}
+
+/* ═══════════════════════════════════════════════════
+   SECTION INNER
+═══════════════════════════════════════════════════ */
+.vnf-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1720px;
+  margin: 0 auto;
+  padding: 0 clamp(16px,5vw,72px);
+}
+
+/* ═══════════════════════════════════════════════════
+   REVEAL ANIMATION
+═══════════════════════════════════════════════════ */
+.vnf-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1s var(--vnf-ease), transform 1s var(--vnf-ease);
+}
+.vnf-reveal.vnf-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ╔═══════════════════════════════════════════════════
+   ║  NEWSLETTER SECTION
+   ╚═══════════════════════════════════════════════════ */
+.vnf-newsletter {
+  position: relative;
+  padding: clamp(72px,10vw,140px) 0 clamp(64px,9vw,120px);
+  border-bottom: 1px solid rgba(255,255,255,0.055);
+}
+
+/* Top separator line */
+.vnf-top-sep {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,transparent,rgba(198,255,0,0.25) 30%,rgba(198,255,0,0.65) 50%,rgba(198,255,0,0.25) 70%,transparent);
+  box-shadow: 0 -4px 20px rgba(198,255,0,0.12);
+  animation: vnf-topline 6s ease-in-out infinite;
+}
+@keyframes vnf-topline { 0%,100%{opacity:0.55;} 50%{opacity:1; box-shadow:0 -6px 30px rgba(198,255,0,0.25);} }
+
+/* Newsletter content */
+.vnf-nl-content {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Floating badges */
+.vnf-float-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.vnf-fbadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-family: var(--vnf-font-m);
+  font-size: clamp(8px,0.85vw,9.5px);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid;
+  line-height: 1;
+  white-space: nowrap;
+  animation: vnf-badge-float 4s ease-in-out infinite;
+}
+.vnf-fbadge:nth-child(2) { animation-delay:-1.3s; }
+.vnf-fbadge:nth-child(3) { animation-delay:-2.6s; }
+@keyframes vnf-badge-float {
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-4px);}
+}
+.vnf-fbadge-lime {
+  background:rgba(198,255,0,0.10);
+  border-color:rgba(198,255,0,0.32);
+  color:var(--vnf-lime);
+}
+.vnf-fbadge-white {
+  background:rgba(255,255,255,0.06);
+  border-color:rgba(255,255,255,0.16);
+  color:rgba(255,255,255,0.75);
+}
+.vnf-fbadge-dot {
+  width:5px; height:5px;
+  border-radius:50%;
+  background:currentColor;
+  animation:vnf-dot-pulse 1.8s ease-in-out infinite;
+}
+@keyframes vnf-dot-pulse {
+  0%,100%{opacity:1;}
+  50%{opacity:0.4;}
+}
+
+/* Top Label */
+.vnf-nl-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 22px;
+}
+.vnf-nl-label-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--vnf-lime);
+  box-shadow: 0 0 12px rgba(198,255,0,0.75);
+  animation: vnf-ldot 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes vnf-ldot {
+  0%,100%{box-shadow:0 0 10px rgba(198,255,0,0.7);}
+  50%{box-shadow:0 0 22px rgba(198,255,0,1),0 0 40px rgba(198,255,0,0.4);}
+}
+.vnf-nl-label-txt {
+  font-family: var(--vnf-font-m);
+  font-size: clamp(9px,1.05vw,11px);
+  letter-spacing: 0.28em;
+  color: rgba(198,255,0,0.82);
+  text-transform: uppercase;
+}
+
+/* Main Heading */
+.vnf-nl-heading {
+  font-family: var(--vnf-font-d);
+  font-size: clamp(42px,7.5vw,110px);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--vnf-white);
+  text-transform: uppercase;
+  margin: 0 0 24px;
+}
+.vnf-nl-heading em {
+  font-style: normal;
+  color: var(--vnf-lime);
+  text-shadow: 0 0 30px rgba(198,255,0,0.45), 0 0 70px rgba(198,255,0,0.15);
+  animation: vnf-acc 4s ease-in-out infinite;
+}
+@keyframes vnf-acc {
+  0%,100%{text-shadow:0 0 30px rgba(198,255,0,0.45),0 0 70px rgba(198,255,0,0.15);}
+  50%{text-shadow:0 0 42px rgba(198,255,0,0.65),0 0 90px rgba(198,255,0,0.25);}
+}
+
+/* Description */
+.vnf-nl-desc {
+  font-family: var(--vnf-font-b);
+  font-size: clamp(13.5px,1.4vw,16px);
+  line-height: 1.72;
+  color: rgba(255,255,255,0.45);
+  max-width: 520px;
+  margin: 0 auto 44px;
+  font-weight: 300;
+}
+
+/* Newsletter Form */
+.vnf-form-wrap {
+  position: relative;
+  max-width: 580px;
+  margin: 0 auto 20px;
+}
+
+.vnf-form {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(8,8,8,0.72);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1.5px solid rgba(198,255,0,0.22);
+  border-radius: 100px;
+  padding: 6px 6px 6px 28px;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+.vnf-form::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background: radial-gradient(ellipse at center,rgba(198,255,0,0.04) 0%,transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.vnf-form:focus-within {
+  border-color: rgba(198,255,0,0.65);
+  box-shadow: 0 0 28px rgba(198,255,0,0.18), inset 0 0 20px rgba(198,255,0,0.03);
+}
+.vnf-form:focus-within::before { opacity:1; }
+
+.vnf-form-input {
+  flex: 1;
+  background: transparent !important;
+  border: none;
+  outline: none;
+  font-family: var(--vnf-font-b);
+  font-size: clamp(13px,1.3vw,14.5px);
+  color: var(--vnf-white);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  padding: 14px 0;
+  min-width: 0;
+}
+.vnf-form-input::placeholder {
+  color: rgba(255,255,255,0.28);
+  font-weight: 300;
+}
+.vnf-form-input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #080808 inset;
+  -webkit-text-fill-color: #ffffff;
+}
+
+.vnf-form-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 100px;
+  background: var(--vnf-lime);
+  color: #040404;
+  border: none;
+  font-family: var(--vnf-font-m);
+  font-size: clamp(10px,1.1vw,11.5px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.35s var(--vnf-ease), box-shadow 0.35s ease, background 0.3s ease;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  animation: vnf-btn-float 4s ease-in-out infinite;
+}
+.vnf-form-btn::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,0.22) 50%,transparent 70%);
+  transform:translateX(-100%);
+  transition:transform 0s;
+  border-radius:inherit;
+}
+.vnf-form-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 28px rgba(198,255,0,0.45), 0 8px 24px rgba(0,0,0,0.4);
+  background: #d4ff1a;
+}
+.vnf-form-btn:hover::before {
+  transform:translateX(100%);
+  transition:transform 0.55s var(--vnf-ease-out);
+}
+.vnf-form-btn:active { transform:scale(0.97); }
+@keyframes vnf-btn-float {
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-2px);}
+}
+.vnf-form-btn:hover { animation:none; }
+
+/* Privacy */
+.vnf-nl-privacy {
+  font-family: var(--vnf-font-b);
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.22);
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+.vnf-nl-privacy a {
+  color: rgba(198,255,0,0.5);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+.vnf-nl-privacy a:hover { color:var(--vnf-lime); }
+
+/* Success State */
+.vnf-form-success {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 22px 0;
+}
+.vnf-success-icon {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: rgba(198,255,0,0.10);
+  border: 1.5px solid rgba(198,255,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--vnf-lime);
+  animation: vnf-success-pop 0.5s var(--vnf-ease) forwards;
+}
+@keyframes vnf-success-pop {
+  from{transform:scale(0.5);opacity:0;}
+  to{transform:scale(1);opacity:1;}
+}
+.vnf-success-txt {
+  font-family: var(--vnf-font-m);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--vnf-lime);
+  text-transform: uppercase;
+}
+
+/* Geo Decorations */
+.vnf-nl-geo {
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+}
+.vnf-geo-tl {
+  top: -20px; left: -30px;
+  width: 160px; height: 160px;
+  border: 1px solid rgba(198,255,0,0.08);
+  border-radius: 50%;
+  animation: vnf-geo-spin 25s linear infinite;
+}
+.vnf-geo-br {
+  bottom: -30px; right: -20px;
+  width: 120px; height: 120px;
+  border: 1px solid rgba(198,255,0,0.06);
+  transform: rotate(45deg);
+  animation: vnf-geo-spin 18s linear infinite reverse;
+}
+.vnf-geo-line-l {
+  top: 50%; left: -60px;
+  width: 50px; height: 1px;
+  background: linear-gradient(to right,transparent,rgba(198,255,0,0.3));
+  animation: vnf-lbl 4s ease-in-out infinite;
+}
+.vnf-geo-line-r {
+  top: 50%; right: -60px;
+  width: 50px; height: 1px;
+  background: linear-gradient(to left,transparent,rgba(198,255,0,0.3));
+  animation: vnf-lbl 4s ease-in-out infinite reverse;
+}
+@keyframes vnf-geo-spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+@keyframes vnf-lbl { 0%,100%{opacity:0.5;} 50%{opacity:1;} }
+
+/* ╔═══════════════════════════════════════════════════
+   ║  FOOTER
+   ╚═══════════════════════════════════════════════════ */
+.vnf-footer {
+  position: relative;
+  padding: clamp(56px,8vw,100px) 0 0;
+}
+
+/* ── Footer Main Row ── */
+.vnf-footer-main {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: clamp(32px,4vw,64px);
+  padding-bottom: clamp(48px,6vw,80px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  align-items: start;
+}
+
+/* ── Brand Column ── */
+.vnf-brand-col {
+  position: relative;
+}
+
+.vnf-brand-glow {
+  position: absolute;
+  top: -40px; left: -40px;
+  width: 300px; height: 200px;
+  background: radial-gradient(ellipse,rgba(198,255,0,0.07) 0%,transparent 70%);
+  pointer-events: none;
+  animation: vnf-brand-glow 6s ease-in-out infinite;
+  z-index: 0;
+}
+@keyframes vnf-brand-glow { 0%,100%{opacity:0.6;} 50%{opacity:1;} }
+
+.vnf-logo {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 18px;
+}
+.vnf-logo-text {
+  font-family: var(--vnf-font-d);
+  font-size: clamp(38px,5vw,66px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--vnf-white);
+  line-height: 1;
+  text-transform: uppercase;
+  text-shadow: 0 0 40px rgba(198,255,0,0.12);
+  transition: text-shadow 0.4s ease;
+}
+.vnf-logo-text:hover {
+  text-shadow: 0 0 60px rgba(198,255,0,0.25);
+}
+.vnf-logo-accent {
+  color: var(--vnf-lime);
+  text-shadow: 0 0 25px rgba(198,255,0,0.5);
+}
+.vnf-logo-tag {
+  display: block;
+  font-family: var(--vnf-font-m);
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  color: rgba(198,255,0,0.55);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.vnf-brand-desc {
+  font-family: var(--vnf-font-b);
+  font-size: clamp(12.5px,1.2vw,14px);
+  line-height: 1.7;
+  color: rgba(255,255,255,0.38);
+  font-weight: 300;
+  margin-bottom: 28px;
+  max-width: 280px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Social Icons */
+.vnf-socials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+.vnf-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  transition:
+    color 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.35s var(--vnf-ease),
+    box-shadow 0.35s ease;
+}
+.vnf-social-btn:hover {
+  color: var(--vnf-lime);
+  background: rgba(198,255,0,0.07);
+  border-color: rgba(198,255,0,0.32);
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.4), 0 0 14px rgba(198,255,0,0.15);
+}
+.vnf-social-btn svg { width:17px; height:17px; }
+
+/* ── Menu Columns ── */
+.vnf-menu-col {}
+
+.vnf-menu-heading {
+  font-family: var(--vnf-font-m);
+  font-size: clamp(9px,0.95vw,11px);
+  letter-spacing: 0.3em;
+  color: rgba(198,255,0,0.75);
+  text-transform: uppercase;
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.vnf-menu-heading::after {
+  content:'';
+  display:block;
+  flex:1;
+  height:1px;
+  background: linear-gradient(to right,rgba(198,255,0,0.22),transparent);
+}
+
+.vnf-menu-list {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.vnf-menu-list li a {
+  font-family: var(--vnf-font-b);
+  font-size: clamp(12.5px,1.2vw,14px);
+  color: rgba(255,255,255,0.42);
+  text-decoration: none;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  transition: color 0.28s ease, letter-spacing 0.28s ease;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.vnf-menu-list li a::before {
+  content:'';
+  display:block;
+  width:0; height:1px;
+  background: var(--vnf-lime);
+  transition: width 0.3s var(--vnf-ease);
+  box-shadow: 0 0 6px rgba(198,255,0,0.5);
+}
+.vnf-menu-list li a:hover {
+  color: rgba(255,255,255,0.88);
+  letter-spacing: 0.04em;
+}
+.vnf-menu-list li a:hover::before { width:14px; }
+
+/* Mobile Accordion */
+.vnf-menu-toggle {
+  display: none;
+  width: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  align-items: center;
+  justify-content: space-between;
+}
+.vnf-menu-toggle-txt {
+  font-family: var(--vnf-font-m);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: rgba(198,255,0,0.72);
+  text-transform: uppercase;
+}
+.vnf-menu-toggle-icon {
+  width: 20px; height: 20px;
+  color: rgba(198,255,0,0.6);
+  transition: transform 0.35s var(--vnf-ease);
+  flex-shrink: 0;
+}
+.vnf-menu-col.open .vnf-menu-toggle-icon { transform: rotate(45deg); }
+
+.vnf-menu-body {
+  overflow: hidden;
+}
+
+/* ── Footer Bottom Bar ── */
+.vnf-footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: clamp(18px,3vw,28px) 0;
+  flex-wrap: wrap;
+}
+
+.vnf-footer-copy-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.vnf-copy {
+  font-family: var(--vnf-font-m);
+  font-size: clamp(9px,0.9vw,10.5px);
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.22);
+  text-transform: uppercase;
+}
+.vnf-tagline {
+  font-family: var(--vnf-font-d);
+  font-size: clamp(14px,1.8vw,22px);
+  color: rgba(198,255,0,0.40);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Payment Icons */
+.vnf-payment-icons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.vnf-pay-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  font-family: var(--vnf-font-m);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.28);
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+.vnf-pay-icon:hover {
+  border-color: rgba(198,255,0,0.2);
+  color: rgba(255,255,255,0.45);
+}
+.vnf-pay-icon svg { width:22px; height:14px; }
+
+/* Back to top */
+.vnf-back-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--vnf-font-m);
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.28);
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+  padding: 0;
+}
+.vnf-back-top:hover { color: var(--vnf-lime); }
+.vnf-back-top:hover .vnf-btt-icon { border-color:rgba(198,255,0,0.5); transform:translateY(-3px); box-shadow:0 0 12px rgba(198,255,0,0.2); }
+.vnf-btt-icon {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.12);
+  display: flex; align-items: center; justify-content: center;
+  color: currentColor;
+  transition: all 0.35s var(--vnf-ease);
+}
+.vnf-btt-icon svg { width:13px; height:13px; }
+
+/* Neon bottom reflection */
+.vnf-bottom-neon {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,transparent,rgba(198,255,0,0.18) 25%,rgba(198,255,0,0.55) 50%,rgba(198,255,0,0.18) 75%,transparent);
+  box-shadow: 0 -6px 20px rgba(198,255,0,0.10);
+}
+
+/* ═══════════════════════════════════════════════════
+   TABLET — 768-1100px
+═══════════════════════════════════════════════════ */
+@media screen and (max-width:1100px) {
+  .vnf-footer-main {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .vnf-brand-col {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px 40px;
+    align-items: start;
+  }
+  .vnf-logo { grid-row: 1; }
+  .vnf-brand-desc { grid-row: 2; grid-column: 1 / -1; margin-bottom: 0; max-width: 100%; }
+  .vnf-socials { grid-row: 1; grid-column: 2; align-self: center; justify-content: flex-end; }
+}
+
+@media screen and (max-width:860px) {
+  .vnf-footer-main { grid-template-columns: 1fr 1fr; }
+  .vnf-brand-col { grid-column: 1 / -1; grid-template-columns: 1fr; }
+  .vnf-socials { justify-content: flex-start; grid-column: 1; grid-row: 3; }
+  .vnf-brand-desc { max-width: 440px; }
+}
+
+/* ═══════════════════════════════════════════════════
+   MOBILE — up to 767px
+═══════════════════════════════════════════════════ */
+@media screen and (max-width:767px) {
+  /* Newsletter */
+  .vnf-nl-heading { font-size:clamp(36px,12vw,62px); }
+  .vnf-nl-desc { font-size:13.5px; }
+  .vnf-form { padding: 5px 5px 5px 20px; }
+  .vnf-form-input { font-size:13px; padding:13px 0; }
+  .vnf-form-btn { padding:13px 20px; font-size:9.5px; }
+  .vnf-float-badges { gap: 7px; }
+  .vnf-nl-geo { display:none; }
+
+  /* Footer Layout — Accordion */
+  .vnf-footer-main {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .vnf-brand-col {
+    display: block;
+    padding-bottom: 36px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 0;
+  }
+
+  /* Menu accordion */
+  .vnf-menu-heading { display:none; }
+  .vnf-menu-toggle { display:flex; }
+
+  .vnf-menu-body {
+    max-height: 0;
+    transition: max-height 0.4s var(--vnf-ease);
+  }
+  .vnf-menu-col.open .vnf-menu-body {
+    max-height: 300px;
+  }
+  .vnf-menu-list {
+    padding: 16px 0 20px;
+    gap: 16px;
+  }
+  .vnf-menu-list li a { font-size:14px; }
+
+  /* Bottom bar */
+  .vnf-footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .vnf-back-top { align-self:flex-end; }
+
+  /* Reduce particles */
+  .vnf-p9,.vnf-p10,.vnf-p11,.vnf-p12 { display:none; }
+}
+
+@media screen and (max-width:480px) {
+  .vnf-nl-heading { font-size:clamp(34px,11.5vw,52px); }
+  .vnf-form { flex-direction:column; border-radius:20px; padding:14px 14px 10px; gap:10px; }
+  .vnf-form-input { width:100%; padding:10px 0; }
+  .vnf-form-btn { width:100%; justify-content:center; border-radius:12px; }
+  .vnf-payment-icons { gap:6px; }
+  .vnf-logo-text { font-size:clamp(34px,11vw,52px); }
+}
+
+/* Accessibility */
+.vnf-form-btn:focus-visible,
+.vnf-social-btn:focus-visible,
+.vnf-back-top:focus-visible {
+  outline: 2px solid var(--vnf-lime);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.3s !important;
+  }
+}
+</style>
+
+<div class="vnf-wrap" id="vnf-{{ section.id }}">
+
+  <!-- ═══ SHARED BACKGROUND ═══ -->
+  <div class="vnf-bg" aria-hidden="true">
+    <div class="vnf-bg-base"></div>
+    <div class="vnf-orb vnf-orb-1"></div>
+    <div class="vnf-orb vnf-orb-2"></div>
+    <div class="vnf-orb vnf-orb-3"></div>
+    <div class="vnf-orb vnf-orb-4"></div>
+    <div class="vnf-mesh"></div>
+    <div class="vnf-noise"></div>
+    <div class="vnf-scanlines"></div>
+    <div class="vnf-fog"></div>
+    <div class="vnf-particles">
+      <span class="vnf-p vnf-p1"></span>
+      <span class="vnf-p vnf-p2"></span>
+      <span class="vnf-p vnf-p3"></span>
+      <span class="vnf-p vnf-p4"></span>
+      <span class="vnf-p vnf-p5"></span>
+      <span class="vnf-p vnf-p6"></span>
+      <span class="vnf-p vnf-p7"></span>
+      <span class="vnf-p vnf-p8"></span>
+      <span class="vnf-p vnf-p9"></span>
+      <span class="vnf-p vnf-p10"></span>
+      <span class="vnf-p vnf-p11"></span>
+      <span class="vnf-p vnf-p12"></span>
+    </div>
+  </div>
+
+  <!-- ═══ WATERMARK ═══ -->
+  <div class="vnf-watermark" aria-hidden="true">
+    <span>{{ section.settings.watermark_text | default: 'VANTIQUE' }}</span>
+  </div>
+
+  <!-- ╔═══════════════════════════════════════════════════
+       ║  NEWSLETTER SECTION
+       ╚═══════════════════════════════════════════════════ -->
+  <section class="vnf-newsletter" aria-labelledby="vnf-nl-heading">
+    <div class="vnf-top-sep" aria-hidden="true"></div>
+
+    <div class="vnf-inner">
+      <div class="vnf-nl-content vnf-reveal" data-vnf-reveal>
+
+        <!-- Geo Decorations -->
+        <div class="vnf-nl-geo vnf-geo-tl" aria-hidden="true"></div>
+        <div class="vnf-nl-geo vnf-geo-br" aria-hidden="true"></div>
+        <div class="vnf-nl-geo vnf-geo-line-l" aria-hidden="true"></div>
+        <div class="vnf-nl-geo vnf-geo-line-r" aria-hidden="true"></div>
+
+        {% comment %} <!-- Floating Badges -->
+        <div class="vnf-float-badges" aria-hidden="true">
+          <span class="vnf-fbadge vnf-fbadge-lime">
+            <span class="vnf-fbadge-dot"></span>
+            {{ section.settings.badge_1 }}
+          </span>
+          <span class="vnf-fbadge vnf-fbadge-white">
+            {{ section.settings.badge_2 }}
+          </span>
+          <span class="vnf-fbadge vnf-fbadge-lime">
+            <span class="vnf-fbadge-dot"></span>
+            {{ section.settings.badge_3 }}
+          </span>
+        </div> {% endcomment %}
+
+        <!-- Top Label -->
+        <div class="vnf-nl-label">
+          <span class="vnf-nl-label-dot" aria-hidden="true"></span>
+          <span class="vnf-nl-label-txt">{{ section.settings.nl_top_label }}</span>
+          <span class="vnf-nl-label-dot" aria-hidden="true"></span>
+        </div>
+
+        <!-- Main Heading -->
+        <h2 class="vnf-nl-heading" id="vnf-nl-heading">
+          {%- assign nl_words = section.settings.nl_heading | default: 'ENTER THE FUTURE OF STREETWEAR' | split: ' ' -%}
+          {%- for w in nl_words -%}
+            {%- if forloop.index == 3 or forloop.index == 5 -%}
+              <em>{{ w }}</em>
+            {%- else -%}
+              {{ w }}
+            {%- endif -%}
+            {%- unless forloop.last -%}&nbsp;{%- endunless -%}
+          {%- endfor -%}
+        </h2>
+
+        <!-- Description -->
+        <p class="vnf-nl-desc">
+          {{ section.settings.nl_desc }}
+        </p>
+
+        <!-- Newsletter Form -->
+        <div class="vnf-form-wrap">
+          {% form 'customer', id: 'vnf-newsletter-form' %}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <div class="vnf-form" id="vnf-form-{{ section.id }}">
+              <label for="vnf-email-{{ section.id }}" class="visually-hidden">
+                {{ section.settings.nl_input_placeholder  }}
+              </label>
+              <input
+                class="vnf-form-input"
+                id="vnf-email-{{ section.id }}"
+                type="email"
+                name="contact[email]"
+                autocomplete="email"
+                required
+                placeholder="{{ section.settings.nl_input_placeholder }}"
+                aria-label="{{ section.settings.nl_input_placeholder }}"
+              >
+              <button type="submit" class="vnf-form-btn" aria-label="{{ section.settings.nl_btn_text | default: 'Subscribe' }}">
+                {{ section.settings.nl_btn_text }}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+            <!-- Success state -->
+            <div class="vnf-form-success" id="vnf-success-{{ section.id }}" aria-live="polite">
+              <div class="vnf-success-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20,6 9,17 4,12"/>
+                </svg>
+              </div>
+              <span class="vnf-success-txt">{{ section.settings.nl_success_msg | default: "YOU'RE IN. WELCOME TO VANTIQUE." }}</span>
+            </div>
+          {% endform %}
+        </div>
+
+        <!-- Privacy -->
+        <p class="vnf-nl-privacy">
+          {{ section.settings.nl_privacy | default: 'By subscribing you agree to our' }}
+          <a href="{{ section.settings.privacy_link | default: '/policies/privacy-policy' }}">
+            {{ section.settings.nl_privacy_link_text | default: 'Privacy Policy' }}
+          </a>.
+          {{ section.settings.nl_privacy_suffix | default: 'Unsubscribe anytime.' }}
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔═══════════════════════════════════════════════════
+       ║  FOOTER
+       ╚═══════════════════════════════════════════════════ -->
+  <footer class="vnf-footer" role="contentinfo">
+    <div class="vnf-inner">
+
+      <!-- ── FOOTER MAIN GRID ── -->
+      <div class="vnf-footer-main vnf-reveal" data-vnf-reveal>
+
+        <!-- Brand Column -->
+        <div class="vnf-brand-col">
+          <div class="vnf-brand-glow" aria-hidden="true"></div>
+
+          <div class="vnf-logo">
+            <a href="/" aria-label="{{ section.settings.brand_name | default: 'VANTIQUE' }} Home">
+              {% if section.settings.footer_logo != blank %}
+                <img
+                  src="{{ section.settings.footer_logo | img_url: '300x' }}"
+                  alt="{{ section.settings.brand_name | default: 'VANTIQUE' }}"
+                  width="180" height="auto"
+                  loading="lazy"
+                >
+              {% else %}
+                <span class="vnf-logo-text">
+                  {{ section.settings.brand_name | default: 'VANTI' }}<span class="vnf-logo-accent">QUE</span>
+                </span>
+              {% endif %}
+            </a>
+            <span class="vnf-logo-tag">{{ section.settings.brand_tagline | default: 'LUXURY STREETWEAR — EST. 2024' }}</span>
+          </div>
+
+          <p class="vnf-brand-desc">
+            {{ section.settings.brand_desc | default: 'Born from the future. Worn by the few. VANTIQUE is where luxury meets the street — and the street rewrites the rules.' }}
+          </p>
+
+          <!-- Social Icons -->
+          <div class="vnf-socials" role="list" aria-label="Social Media Links">
+
+            {% if section.settings.social_instagram != blank %}
+              <a href="{{ section.settings.social_instagram }}" class="vnf-social-btn" target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram" role="listitem">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+                </svg>
+              </a>
+            {% endif %}
+
+            {% if section.settings.social_tiktok != blank %}
+              <a href="{{ section.settings.social_tiktok }}" class="vnf-social-btn" target="_blank" rel="noopener noreferrer" aria-label="Follow on TikTok" role="listitem">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+                </svg>
+              </a>
+            {% endif %}
+
+            {% if section.settings.social_pinterest != blank %}
+              <a href="{{ section.settings.social_pinterest }}" class="vnf-social-btn" target="_blank" rel="noopener noreferrer" aria-label="Follow on Pinterest" role="listitem">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M12 2C6.477 2 2 6.477 2 12c0 4.236 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.78 1.172-4.97 1.172-4.97s-.299-.598-.299-1.482c0-1.388.806-2.428 1.808-2.428.853 0 1.267.641 1.267 1.408 0 .858-.546 2.141-.828 3.33-.236.995.499 1.806 1.476 1.806 1.772 0 3.137-1.868 3.137-4.565 0-2.387-1.715-4.057-4.163-4.057-2.836 0-4.499 2.127-4.499 4.325 0 .856.33 1.775.741 2.276a.3.3 0 0 1 .069.285c-.076.314-.243 1.001-.276 1.14-.044.181-.147.219-.338.132-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.967-.527-2.292-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.522 0 10-4.477 10-10S17.522 2 12 2z"/>
+                </svg>
+              </a>
+            {% endif %}
+
+            {% if section.settings.social_youtube != blank %}
+              <a href="{{ section.settings.social_youtube }}" class="vnf-social-btn" target="_blank" rel="noopener noreferrer" aria-label="Watch on YouTube" role="listitem">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+                  <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/>
+                </svg>
+              </a>
+            {% endif %}
+
+            {% if section.settings.social_twitter != blank %}
+              <a href="{{ section.settings.social_twitter }}" class="vnf-social-btn" target="_blank" rel="noopener noreferrer" aria-label="Follow on X/Twitter" role="listitem">
+                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </a>
+            {% endif %}
+
+          </div>
+        </div>
+
+        <!-- SHOP Column -->
+        <div class="vnf-menu-col" id="vnf-col-shop-{{ section.id }}">
+          <button
+            class="vnf-menu-toggle"
+            aria-expanded="false"
+            aria-controls="vnf-shop-body-{{ section.id }}"
+            data-vnf-accordion
+          >
+            <span class="vnf-menu-toggle-txt">{{ section.settings.col1_heading | default: 'SHOP' }}</span>
+            <svg class="vnf-menu-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </button>
+          <h3 class="vnf-menu-heading">{{ section.settings.col1_heading | default: 'SHOP' }}</h3>
+          <div class="vnf-menu-body" id="vnf-shop-body-{{ section.id }}">
+            <ul class="vnf-menu-list" role="list">
+              <li><a href="{{ section.settings.col1_link1_url | default: '/collections/new-arrivals' }}">{{ section.settings.col1_link1 | default: 'New Arrivals' }}</a></li>
+              <li><a href="{{ section.settings.col1_link2_url | default: '/collections/all' }}">{{ section.settings.col1_link2 | default: 'Collections' }}</a></li>
+              <li><a href="{{ section.settings.col1_link3_url | default: '/collections/streetwear' }}">{{ section.settings.col1_link3 | default: 'Streetwear' }}</a></li>
+              <li><a href="{{ section.settings.col1_link4_url | default: '/collections/accessories' }}">{{ section.settings.col1_link4 | default: 'Accessories' }}</a></li>
+              {% if section.settings.col1_link5 != blank %}
+                <li><a href="{{ section.settings.col1_link5_url | default: '#' }}">{{ section.settings.col1_link5 }}</a></li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+
+        <!-- COMPANY Column -->
+        <div class="vnf-menu-col" id="vnf-col-company-{{ section.id }}">
+          <button
+            class="vnf-menu-toggle"
+            aria-expanded="false"
+            aria-controls="vnf-company-body-{{ section.id }}"
+            data-vnf-accordion
+          >
+            <span class="vnf-menu-toggle-txt">{{ section.settings.col2_heading | default: 'COMPANY' }}</span>
+            <svg class="vnf-menu-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </button>
+          <h3 class="vnf-menu-heading">{{ section.settings.col2_heading | default: 'COMPANY' }}</h3>
+          <div class="vnf-menu-body" id="vnf-company-body-{{ section.id }}">
+            <ul class="vnf-menu-list" role="list">
+              <li><a href="{{ section.settings.col2_link1_url | default: '/pages/about' }}">{{ section.settings.col2_link1 | default: 'About' }}</a></li>
+              <li><a href="{{ section.settings.col2_link2_url | default: '/blogs/journal' }}">{{ section.settings.col2_link2 | default: 'Journal' }}</a></li>
+              <li><a href="{{ section.settings.col2_link3_url | default: '/pages/careers' }}">{{ section.settings.col2_link3 | default: 'Careers' }}</a></li>
+              <li><a href="{{ section.settings.col2_link4_url | default: '/pages/contact' }}">{{ section.settings.col2_link4 | default: 'Contact' }}</a></li>
+              {% if section.settings.col2_link5 != blank %}
+                <li><a href="{{ section.settings.col2_link5_url | default: '#' }}">{{ section.settings.col2_link5 }}</a></li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+
+        <!-- SUPPORT Column -->
+        <div class="vnf-menu-col" id="vnf-col-support-{{ section.id }}">
+          <button
+            class="vnf-menu-toggle"
+            aria-expanded="false"
+            aria-controls="vnf-support-body-{{ section.id }}"
+            data-vnf-accordion
+          >
+            <span class="vnf-menu-toggle-txt">{{ section.settings.col3_heading | default: 'SUPPORT' }}</span>
+            <svg class="vnf-menu-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </button>
+          <h3 class="vnf-menu-heading">{{ section.settings.col3_heading | default: 'SUPPORT' }}</h3>
+          <div class="vnf-menu-body" id="vnf-support-body-{{ section.id }}">
+            <ul class="vnf-menu-list" role="list">
+              <li><a href="{{ section.settings.col3_link1_url | default: '/pages/shipping' }}">{{ section.settings.col3_link1 | default: 'Shipping' }}</a></li>
+              <li><a href="{{ section.settings.col3_link2_url | default: '/pages/returns' }}">{{ section.settings.col3_link2 | default: 'Returns' }}</a></li>
+              <li><a href="{{ section.settings.col3_link3_url | default: '/pages/faq' }}">{{ section.settings.col3_link3 | default: 'FAQ' }}</a></li>
+              <li><a href="{{ section.settings.col3_link4_url | default: '/policies/privacy-policy' }}">{{ section.settings.col3_link4 | default: 'Privacy Policy' }}</a></li>
+              {% if section.settings.col3_link5 != blank %}
+                <li><a href="{{ section.settings.col3_link5_url | default: '#' }}">{{ section.settings.col3_link5 }}</a></li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+
+      </div><!-- /.vnf-footer-main -->
+
+      <!-- ── FOOTER BOTTOM BAR ── -->
+      <div class="vnf-footer-bottom">
+
+        <div class="vnf-footer-copy-block">
+          <span class="vnf-copy">
+            &copy; {{ 'now' | date: '%Y' }} {{ section.settings.brand_name | default: 'VANTIQUE' }}.
+            {{ section.settings.copyright_suffix | default: 'ALL RIGHTS RESERVED.' }}
+          </span>
+          <span class="vnf-tagline">{{ section.settings.footer_tagline | default: 'CRAFTED FOR THE FUTURE.' }}</span>
+        </div>
+
+        <!-- Payment Icons -->
+        <div class="vnf-payment-icons" aria-label="Accepted Payment Methods">
+          <div class="vnf-pay-icon" title="Visa">
+            <svg viewBox="0 0 38 24" fill="none">
+              <rect width="38" height="24" rx="3" fill="rgba(255,255,255,0.04)"/>
+              <text x="19" y="16" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="Arial" font-weight="bold">VISA</text>
+            </svg>
+          </div>
+          <div class="vnf-pay-icon" title="Mastercard">
+            <svg viewBox="0 0 38 24" fill="none">
+              <rect width="38" height="24" rx="3" fill="rgba(255,255,255,0.04)"/>
+              <circle cx="14" cy="12" r="7" fill="rgba(255,80,0,0.4)"/>
+              <circle cx="24" cy="12" r="7" fill="rgba(255,180,0,0.4)"/>
+            </svg>
+          </div>
+          <div class="vnf-pay-icon" title="PayPal">PAYPAL</div>
+          <div class="vnf-pay-icon" title="Apple Pay">
+            <svg viewBox="0 0 38 24" fill="none">
+              <rect width="38" height="24" rx="3" fill="rgba(255,255,255,0.04)"/>
+              <text x="19" y="16" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-family="Arial">PAY</text>
+            </svg>
+          </div>
+          <div class="vnf-pay-icon" title="Shop Pay">SHOP</div>
+        </div>
+
+        <!-- Back to Top -->
+        <button class="vnf-back-top" id="vnf-btt-{{ section.id }}" aria-label="Back to top">
+          BACK TO TOP
+          <span class="vnf-btt-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 15l7-7 7 7"/>
+            </svg>
+          </span>
+        </button>
+
+      </div>
+
+    </div><!-- /.vnf-inner -->
+
+    <div class="vnf-bottom-neon" aria-hidden="true"></div>
+  </footer>
+
+</div><!-- /.vnf-wrap -->
+
+<script>
+(function(){
+  'use strict';
+
+  const isReduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  function initVNF(wrap){
+    if(!wrap || wrap._vnfInit) return;
+    wrap._vnfInit = true;
+
+    // ── 1. Scroll Reveal ─────────────────────────────────
+    const revealEls = wrap.querySelectorAll('[data-vnf-reveal]');
+
+    function checkReveal(){
+      revealEls.forEach(el => {
+        const r = el.getBoundingClientRect();
+        if(r.top < window.innerHeight * 0.92){
+          el.classList.add('vnf-visible');
+        }
+      });
+    }
+
+    if(isReduced){
+      revealEls.forEach(el => el.classList.add('vnf-visible'));
+    } else {
+      window.addEventListener('scroll', checkReveal, { passive:true });
+      checkReveal();
+    }
+
+    // ── 2. Newsletter Form ───────────────────────────────
+    const form = wrap.querySelector('#vnf-newsletter-form');
+    if(form){
+      const formInner  = form.querySelector('[id^="vnf-form-"]');
+      const successBox = form.querySelector('[id^="vnf-success-"]');
+      const emailInput = form.querySelector('.vnf-form-input');
+
+      form.addEventListener('submit', function(e){
+        // Let Shopify handle actual submission — just show success UI
+        if(emailInput && emailInput.value.includes('@')){
+          setTimeout(() => {
+            if(formInner)  formInner.style.display  = 'none';
+            if(successBox) successBox.style.display = 'flex';
+          }, 600);
+        }
+      });
+    }
+
+    // ── 3. Mobile Accordion Menus ────────────────────────
+    const accordions = wrap.querySelectorAll('[data-vnf-accordion]');
+    accordions.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const col   = btn.closest('.vnf-menu-col');
+        const isOpen = col.classList.contains('open');
+        // Close all
+        wrap.querySelectorAll('.vnf-menu-col.open').forEach(c => {
+          c.classList.remove('open');
+          c.querySelector('[data-vnf-accordion]').setAttribute('aria-expanded','false');
+        });
+        // Open clicked if was closed
+        if(!isOpen){
+          col.classList.add('open');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    });
+
+    // ── 4. Back to Top ────────────────────────────────────
+    const bttBtn = wrap.querySelector('[id^="vnf-btt-"]');
+    if(bttBtn){
+      bttBtn.addEventListener('click', () => {
+        window.scrollTo({ top:0, behavior: isReduced ? 'auto' : 'smooth' });
+      });
+    }
+
+    // ── 5. Form Input Micro Interaction ─────────────────
+    const emailInput2 = wrap.querySelector('.vnf-form-input');
+    const formEl      = wrap.querySelector('.vnf-form');
+    if(emailInput2 && formEl && !isReduced){
+      emailInput2.addEventListener('focus', () => {
+        formEl.style.transform = 'scale(1.012)';
+      });
+      emailInput2.addEventListener('blur', () => {
+        formEl.style.transform = '';
+      });
+      formEl.style.transition = 'border-color 0.35s ease, box-shadow 0.35s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1)';
+    }
+
+    // ── 6. Social Icon Stagger Float ────────────────────
+    if(!isReduced){
+      wrap.querySelectorAll('.vnf-social-btn').forEach((btn, i) => {
+        btn.style.animationDelay = (i * 0.12) + 's';
+      });
+    }
+
+    // ── 7. Menu Link Hover Glow Effect ──────────────────
+    wrap.querySelectorAll('.vnf-menu-list li a').forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        link.style.textShadow = '0 0 12px rgba(198,255,0,0.2)';
+      });
+      link.addEventListener('mouseleave', () => {
+        link.style.textShadow = '';
+      });
+    });
+
+    // ── 8. Cursor Trail (Desktop) ────────────────────────
+    const isMobile = window.matchMedia('(max-width:767px)').matches;
+    if(!isReduced && !isMobile){
+      const trail = document.createElement('div');
+      Object.assign(trail.style, {
+        position:'fixed',
+        width:'150px', height:'150px',
+        borderRadius:'50%',
+        background:'radial-gradient(circle,rgba(198,255,0,0.044) 0%,transparent 70%)',
+        pointerEvents:'none',
+        transform:'translate(-50%,-50%)',
+        zIndex:'9996',
+        opacity:'0',
+        filter:'blur(15px)',
+        transition:'opacity 0.3s ease',
+        willChange:'transform',
+      });
+      document.body.appendChild(trail);
+
+      wrap.addEventListener('mouseenter', () => { trail.style.opacity = '1'; });
+      wrap.addEventListener('mouseleave', () => { trail.style.opacity = '0'; });
+      document.addEventListener('mousemove', e => {
+        requestAnimationFrame(() => {
+          trail.style.transform = `translate(calc(${e.clientX}px - 50%),calc(${e.clientY}px - 50%))`;
+        });
+      }, { passive:true });
+    }
+
+  }
+
+  // ── Boot ──────────────────────────────────────────────
+  function boot(){
+    document.querySelectorAll('[id^="vnf-"]').forEach(el => {
+      if(el.classList.contains('vnf-wrap') || el.querySelector('.vnf-wrap')){
+        const target = el.classList.contains('vnf-wrap') ? el : el.querySelector('.vnf-wrap');
+        if(target) initVNF(target);
+      }
+    });
+    document.querySelectorAll('.vnf-wrap').forEach(initVNF);
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+
+  // ── Shopify Editor ────────────────────────────────────
+  document.addEventListener('shopify:section:load', e => {
+    const w = e.target.querySelector('.vnf-wrap');
+    if(w){ w._vnfInit = false; setTimeout(() => initVNF(w), 80); }
+  });
+  document.addEventListener('shopify:section:unload', e => {
+    const w = e.target.querySelector('.vnf-wrap');
+    if(w) w._vnfInit = false;
+  });
+
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Newsletter + Footer",
+  "tag": "section",
+  "class": "vnf-section-wrap",
+  "settings": [
+    {
+      "type": "header",
+      "content": "🌐 Brand Identity"
+    },
+    {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "Footer Logo (optional)",
+      "info": "Leave blank to use text logo"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "VANTIQUE"
+    },
+    {
+      "type": "text",
+      "id": "brand_tagline",
+      "label": "Brand Tagline (under logo)",
+      "default": "LUXURY STREETWEAR — EST. 2024"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_desc",
+      "label": "Brand Description",
+      "default": "Born from the future. Worn by the few. VANTIQUE is where luxury meets the street — and the street rewrites the rules."
+    },
+    {
+      "type": "text",
+      "id": "watermark_text",
+      "label": "Background Watermark",
+      "default": "VANTIQUE"
+    },
+    {
+      "type": "header",
+      "content": "📧 Newsletter"
+    },
+    {
+      "type": "text",
+      "id": "nl_top_label",
+      "label": "Newsletter Top Label",
+      "default": "JOIN THE MOVEMENT"
+    },
+    {
+      "type": "text",
+      "id": "nl_heading",
+      "label": "Newsletter Main Heading",
+      "default": "ENTER THE FUTURE OF STREETWEAR",
+      "info": "Words 3 and 5 display in neon lime"
+    },
+    {
+      "type": "textarea",
+      "id": "nl_desc",
+      "label": "Newsletter Description",
+    },
+    {
+      "type": "text",
+      "id": "badge_1",
+      "label": "Floating Badge 1",
+    },
+    {
+      "type": "text",
+      "id": "badge_2",
+      "label": "Floating Badge 2",
+    },
+    {
+      "type": "text",
+      "id": "badge_3",
+      "label": "Floating Badge 3",
+    },
+    {
+      "type": "text",
+      "id": "nl_input_placeholder",
+      "label": "Email Input Placeholder",
+      "default": "Enter your email address"
+    },
+    {
+      "type": "text",
+      "id": "nl_btn_text",
+      "label": "Subscribe Button Text",
+      "default": "SUBSCRIBE"
+    },
+    {
+      "type": "text",
+      "id": "nl_success_msg",
+      "label": "Success Message",
+      "default": "YOU'RE IN. WELCOME TO VANTIQUE."
+    },
+    {
+      "type": "text",
+      "id": "nl_privacy",
+      "label": "Privacy Text (before link)",
+      "default": "By subscribing you agree to our"
+    },
+    {
+      "type": "text",
+      "id": "nl_privacy_link_text",
+      "label": "Privacy Link Text",
+      "default": "Privacy Policy"
+    },
+    {
+      "type": "url",
+      "id": "privacy_link",
+      "label": "Privacy Policy URL"
+    },
+    {
+      "type": "text",
+      "id": "nl_privacy_suffix",
+      "label": "Privacy Text (after link)",
+      "default": "Unsubscribe anytime."
+    },
+    {
+      "type": "header",
+      "content": "📱 Social Media"
+    },
+    {
+      "type": "url",
+      "id": "social_instagram",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "social_tiktok",
+      "label": "TikTok URL"
+    },
+    {
+      "type": "url",
+      "id": "social_pinterest",
+      "label": "Pinterest URL"
+    },
+    {
+      "type": "url",
+      "id": "social_youtube",
+      "label": "YouTube URL"
+    },
+    {
+      "type": "url",
+      "id": "social_twitter",
+      "label": "X / Twitter URL"
+    },
+    {
+      "type": "header",
+      "content": "🛍️ Footer Column 1 — SHOP"
+    },
+    {
+      "type": "text",
+      "id": "col1_heading",
+      "label": "Column 1 Heading",
+      "default": "SHOP"
+    },
+    {
+      "type": "text",
+      "id": "col1_link1",
+      "label": "Link 1 Text",
+      "default": "New Arrivals"
+    },
+    {
+      "type": "url",
+      "id": "col1_link1_url",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "col1_link2",
+      "label": "Link 2 Text",
+      "default": "Collections"
+    },
+    {
+      "type": "url",
+      "id": "col1_link2_url",
+      "label": "Link 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "col1_link3",
+      "label": "Link 3 Text",
+      "default": "Streetwear"
+    },
+    {
+      "type": "url",
+      "id": "col1_link3_url",
+      "label": "Link 3 URL"
+    },
+    {
+      "type": "text",
+      "id": "col1_link4",
+      "label": "Link 4 Text",
+      "default": "Accessories"
+    },
+    {
+      "type": "url",
+      "id": "col1_link4_url",
+      "label": "Link 4 URL"
+    },
+    {
+      "type": "text",
+      "id": "col1_link5",
+      "label": "Link 5 Text (optional)"
+    },
+    {
+      "type": "url",
+      "id": "col1_link5_url",
+      "label": "Link 5 URL"
+    },
+    {
+      "type": "header",
+      "content": "🏢 Footer Column 2 — COMPANY"
+    },
+    {
+      "type": "text",
+      "id": "col2_heading",
+      "label": "Column 2 Heading",
+      "default": "COMPANY"
+    },
+    {
+      "type": "text",
+      "id": "col2_link1",
+      "label": "Link 1 Text",
+      "default": "About"
+    },
+    {
+      "type": "url",
+      "id": "col2_link1_url",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "col2_link2",
+      "label": "Link 2 Text",
+      "default": "Journal"
+    },
+    {
+      "type": "url",
+      "id": "col2_link2_url",
+      "label": "Link 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "col2_link3",
+      "label": "Link 3 Text",
+      "default": "Careers"
+    },
+    {
+      "type": "url",
+      "id": "col2_link3_url",
+      "label": "Link 3 URL"
+    },
+    {
+      "type": "text",
+      "id": "col2_link4",
+      "label": "Link 4 Text",
+      "default": "Contact"
+    },
+    {
+      "type": "url",
+      "id": "col2_link4_url",
+      "label": "Link 4 URL"
+    },
+    {
+      "type": "text",
+      "id": "col2_link5",
+      "label": "Link 5 Text (optional)"
+    },
+    {
+      "type": "url",
+      "id": "col2_link5_url",
+      "label": "Link 5 URL"
+    },
+    {
+      "type": "header",
+      "content": "🆘 Footer Column 3 — SUPPORT"
+    },
+    {
+      "type": "text",
+      "id": "col3_heading",
+      "label": "Column 3 Heading",
+      "default": "SUPPORT"
+    },
+    {
+      "type": "text",
+      "id": "col3_link1",
+      "label": "Link 1 Text",
+      "default": "Shipping"
+    },
+    {
+      "type": "url",
+      "id": "col3_link1_url",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "col3_link2",
+      "label": "Link 2 Text",
+      "default": "Returns"
+    },
+    {
+      "type": "url",
+      "id": "col3_link2_url",
+      "label": "Link 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "col3_link3",
+      "label": "Link 3 Text",
+      "default": "FAQ"
+    },
+    {
+      "type": "url",
+      "id": "col3_link3_url",
+      "label": "Link 3 URL"
+    },
+    {
+      "type": "text",
+      "id": "col3_link4",
+      "label": "Link 4 Text",
+      "default": "Privacy Policy"
+    },
+    {
+      "type": "url",
+      "id": "col3_link4_url",
+      "label": "Link 4 URL"
+    },
+    {
+      "type": "text",
+      "id": "col3_link5",
+      "label": "Link 5 Text (optional)"
+    },
+    {
+      "type": "url",
+      "id": "col3_link5_url",
+      "label": "Link 5 URL"
+    },
+    {
+      "type": "header",
+      "content": "📋 Footer Bottom Bar"
+    },
+    {
+      "type": "text",
+      "id": "copyright_suffix",
+      "label": "Copyright Suffix",
+      "default": "ALL RIGHTS RESERVED."
+    },
+    {
+      "type": "text",
+      "id": "footer_tagline",
+      "label": "Footer Tagline",
+      "default": "CRAFTED FOR THE FUTURE."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter + Footer",
+      "category": "VANTIQUE"
+    }
+  ]
+}
+{% endschema %}

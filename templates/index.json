@@ -1,0 +1,202 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_banner_VpW7RY": {
+      "type": "custom-banner",
+      "name": "VERDE Hero Banner",
+      "settings": {
+        "model_image": "shopify://shop_images/remove_every_white_color_from_202605201210.png",
+        "eyebrow_text": "SS 2025 — LUXURY STREETWEAR",
+        "top_heading": "TODO DESIGNER DEVERIA USAR ESSAS PALETAS DE",
+        "main_title": "vantique",
+        "paragraph": "A DYNAMIC FASHION CAMPAIGN ROOTED IN BOLD COLOR THEORY. LUXURY STREETWEAR MEETS FUTURISTIC EDITORIAL DESIGN. CURATED FOR THE NEXT GENERATION OF CREATIVE VISIONARIES.",
+        "watermark_text": "vantique",
+        "cta_label": "EXPLORE COLLECTION",
+        "cta_link": "",
+        "show_secondary_cta": false,
+        "cta_secondary_label": "VIEW LOOKBOOK",
+        "cta_secondary_link": "",
+        "show_stats": false,
+        "stat_1_number": "200+",
+        "stat_1_label": "PIECES",
+        "stat_2_number": "42",
+        "stat_2_label": "COLORWAYS",
+        "stat_3_number": "∞",
+        "stat_3_label": "ATTITUDE",
+        "season_badge": "VERDE COLLECTION — AVAILABLE NOW",
+        "bottom_tagline": "JUST DO IT.",
+        "corner_text": "",
+        "bg_color_1": "#d9ff00",
+        "bg_color_2": "#aeea00",
+        "title_color": "#ffffff",
+        "heading_color": "#080808",
+        "tagline_color": "#080808",
+        "cta_bg_color": "#080808",
+        "cta_text_color": "#d9ff00"
+      }
+    },
+    "product_showcase_kMHyYg": {
+      "type": "product-showcase",
+      "name": "VANTIQUE Showcase",
+      "settings": {
+        "eyebrow": "NEW ERA STREETWEAR",
+        "heading": "Featured Collection",
+        "subheading": "",
+        "btn_text": "Add to Cart",
+        "collection": "frontpage",
+        "product_count": 4,
+        "columns_desktop": 4,
+        "bg_color": "#050505",
+        "card_bg": "#ffffff08",
+        "text_color": "#ffffff",
+        "accent_color": "#c6ff00"
+      }
+    },
+    "lookbook_editorial_6w8iEq": {
+      "type": "lookbook-editorial",
+      "name": "Lookbook Editorial",
+      "settings": {
+        "editorial_image": "shopify://shop_images/give_it_a_neon__B0D501_202605201532.jpg",
+        "use_video": false,
+        "video_url": "",
+        "top_label": "VANTIQUE LOOKBOOK 2026",
+        "main_heading": "FUTURE OF STREETWEAR",
+        "sub_label": "AW / SS 2026 CAMPAIGN",
+        "description": "Where the boundary between fashion and future dissolves. VANTIQUE 2026 is a visual manifesto — draped in oversized silhouettes, cast in neon shadow, and worn by those who move ahead of culture. This is not just clothing. This is identity armor for the next generation.",
+        "collection_season": "LOOKBOOK",
+        "watermark_text": "VANTIQUE",
+        "show_stats": true,
+        "stat_1_number": "48",
+        "stat_1_label": "PIECES",
+        "stat_2_number": "12",
+        "stat_2_label": "LOOKS",
+        "stat_3_number": "∞",
+        "stat_3_label": "IDENTITY",
+        "cta_text": "DISCOVER COLLECTION",
+        "cta_link": "",
+        "secondary_text": "VIEW CAMPAIGN",
+        "secondary_link": "",
+        "show_tags": true,
+        "fashion_tags": "STREETWEAR,FUTURISM,LUXURY,EDITORIAL,2026",
+        "show_info_panel": false,
+        "glass_info_1": "Limited Edition Drop — Available Now",
+        "glass_info_2": "Free Global Shipping on orders $200+",
+        "glow_intensity": 1,
+        "animation_speed": "slow",
+        "enable_animations": false,
+        "enable_mouse_effects": false
+      }
+    },
+    "social_insta_fb7Qfb": {
+      "type": "social-insta",
+      "blocks": {
+        "social_post_yUQcUM": {
+          "type": "social_post",
+          "settings": {
+            "image": "shopify://shop_images/just_adjust_the_picture_in_202605201724.jpg",
+            "video_url": "",
+            "link": "",
+            "badge_text": "EDITORIAL",
+            "highlight_badge": true,
+            "likes": "12.4K",
+            "comments": "342"
+          }
+        },
+        "social_post_M6neX6": {
+          "type": "social_post",
+          "settings": {
+            "image": "shopify://shop_images/just_adjust_the_picture_in_202605201722.jpg",
+            "video_url": "",
+            "link": "",
+            "badge_text": "",
+            "highlight_badge": false,
+            "likes": "12.4K",
+            "comments": "342"
+          }
+        },
+        "social_post_zajEhr": {
+          "type": "social_post",
+          "settings": {
+            "image": "shopify://shop_images/959dcd13fad1e848eace9e6adc203c6a.jpg",
+            "video_url": "",
+            "link": "",
+            "badge_text": "LIMITED FIT",
+            "highlight_badge": false,
+            "likes": "12.4K",
+            "comments": "342"
+          }
+        },
+        "social_post_rRzzCm": {
+          "type": "social_post",
+          "settings": {
+            "image": "shopify://shop_images/just_adjust_the_picture_in_202605201724_1.jpg",
+            "video_url": "",
+            "link": "",
+            "badge_text": "",
+            "highlight_badge": false,
+            "likes": "12.4K",
+            "comments": "342"
+          }
+        },
+        "social_post_ByxrmP": {
+          "type": "social_post",
+          "settings": {
+            "image": "shopify://shop_images/just_adjust_the_picture_in_202605201725.jpg",
+            "video_url": "",
+            "link": "",
+            "badge_text": "NEW DROP",
+            "highlight_badge": true,
+            "likes": "12.4K",
+            "comments": "342"
+          }
+        },
+        "social_post_iB6rfb": {
+          "type": "social_post",
+          "settings": {
+            "image": "shopify://shop_images/just_adjust_the_picture_in_202605201727.jpg",
+            "video_url": "",
+            "link": "",
+            "badge_text": "",
+            "highlight_badge": false,
+            "likes": "12.4K",
+            "comments": "342"
+          }
+        }
+      },
+      "block_order": [
+        "social_post_yUQcUM",
+        "social_post_M6neX6",
+        "social_post_zajEhr",
+        "social_post_rRzzCm",
+        "social_post_ByxrmP",
+        "social_post_iB6rfb"
+      ],
+      "name": "Vantique Social Gallery Insta",
+      "settings": {
+        "top_label": "FOLLOW THE MOVEMENT",
+        "heading": "VANTIQUE SOCIAL",
+        "subheading": "",
+        "ig_handle": "@vantique.official",
+        "bg_base": "#aeea00",
+        "neon_color": "#c6ff00",
+        "neon_rgb": "198, 255, 0.9",
+        "cta_text": "FOLLOW @VANTIQUE",
+        "cta_link": ""
+      }
+    }
+  },
+  "order": [
+    "custom_banner_VpW7RY",
+    "product_showcase_kMHyYg",
+    "lookbook_editorial_6w8iEq",
+    "social_insta_fb7Qfb"
+  ]
+}

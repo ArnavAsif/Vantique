@@ -1,0 +1,81 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "custom_footer_LRcM7x": {
+      "type": "custom-footer",
+      "name": "Newsletter + Footer",
+      "settings": {
+        "brand_name": "VANTIQUE",
+        "brand_tagline": "LUXURY STREETWEAR — EST. 2024",
+        "brand_desc": "",
+        "watermark_text": "VANTIQUE",
+        "nl_top_label": "JOIN THE MOVEMENT",
+        "nl_heading": "ENTER THE FUTURE OF STREETWEAR",
+        "nl_desc": "",
+        "badge_1": "",
+        "badge_2": "",
+        "badge_3": "",
+        "nl_input_placeholder": "Enter your email address",
+        "nl_btn_text": "SUBSCRIBE",
+        "nl_success_msg": "YOU'RE IN. WELCOME TO VANTIQUE.",
+        "nl_privacy": "By subscribing you agree to our",
+        "nl_privacy_link_text": "Privacy Policy",
+        "privacy_link": "",
+        "nl_privacy_suffix": "Unsubscribe anytime.",
+        "social_instagram": "",
+        "social_tiktok": "",
+        "social_pinterest": "",
+        "social_youtube": "",
+        "social_twitter": "",
+        "col1_heading": "SHOP",
+        "col1_link1": "New Arrivals",
+        "col1_link1_url": "",
+        "col1_link2": "Collections",
+        "col1_link2_url": "",
+        "col1_link3": "Streetwear",
+        "col1_link3_url": "",
+        "col1_link4": "Accessories",
+        "col1_link4_url": "",
+        "col1_link5": "",
+        "col1_link5_url": "",
+        "col2_heading": "COMPANY",
+        "col2_link1": "About",
+        "col2_link1_url": "",
+        "col2_link2": "Journal",
+        "col2_link2_url": "",
+        "col2_link3": "Careers",
+        "col2_link3_url": "",
+        "col2_link4": "Contact",
+        "col2_link4_url": "",
+        "col2_link5": "",
+        "col2_link5_url": "",
+        "col3_heading": "SUPPORT",
+        "col3_link1": "Shipping",
+        "col3_link1_url": "",
+        "col3_link2": "Returns",
+        "col3_link2_url": "",
+        "col3_link3": "FAQ",
+        "col3_link3_url": "",
+        "col3_link4": "Privacy Policy",
+        "col3_link4_url": "",
+        "col3_link5": "",
+        "col3_link5_url": "",
+        "copyright_suffix": "ALL RIGHTS RESERVED.",
+        "footer_tagline": "CRAFTED FOR THE FUTURE."
+      }
+    }
+  },
+  "order": [
+    "custom_footer_LRcM7x"
+  ]
+}
