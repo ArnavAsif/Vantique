@@ -152,7 +152,7 @@ The design blends:
 
 ## 📸 Screenshots
 
-![Homepage Preview](assets/Main-img.png)
+![Homepage Preview](assets/hero-mobile.png)
 
 ---
 
