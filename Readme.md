@@ -121,7 +121,7 @@ The website is optimized for:
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/vantique.git
+git clone https://github.com/ArnavAsif/Vantique.git
 ```
 
 Navigate to the project:
